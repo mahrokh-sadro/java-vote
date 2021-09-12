@@ -13,28 +13,28 @@ public class Feature {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Long getM_id() {
+	public Long getId() {
 		return m_id;
 	}
-	public void setM_id(Long m_id) {
+	public void setId(Long m_id) {
 		this.m_id = m_id;
 	}
-	public String getM_title() {
+	public String getTitle() {
 		return m_title;
 	}
-	public void setM_title(String m_title) {
+	public void setTitle(String m_title) {
 		this.m_title = m_title;
 	}
-	public String getM_description() {
+	public String getDescription() {
 		return m_description;
 	}
-	public void setM_description(String m_description) {
+	public void setDescription(String m_description) {
 		this.m_description = m_description;
 	}
-	public String getM_status() {
+	public String getStatus() {
 		return m_status;
 	}
-	public void setM_status(String m_status) {
+	public void setStatus(String m_status) {
 		this.m_status = m_status;
 	}
 	
