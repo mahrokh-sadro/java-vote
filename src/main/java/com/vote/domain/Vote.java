@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 
 public class Vote {
 
-	@EmbeddedId
 	private VoteId m_pk;
 	private Boolean m_upvote;
 
@@ -18,4 +17,15 @@ public class Vote {
 	public void setUpvote(Boolean upvote) {
 		this.m_upvote = upvote;
 	}
+	
+	@EmbeddedId
+	  public VoteId getPk()
+	  {
+	    return m_pk;
+	  }
+
+	  public void setPk(VoteId pk)
+	  {
+	    this.m_pk = pk;
+	  }
 }

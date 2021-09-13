@@ -1,10 +1,12 @@
 package com.vote.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class CommentId {
+public class CommentId implements Serializable{
 
 	private User m_user;
 	private Feature m_feature;
