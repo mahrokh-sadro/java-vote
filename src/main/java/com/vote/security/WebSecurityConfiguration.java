@@ -1,16 +1,32 @@
 package com.vote.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+	
+	@Bean
+	public PasswordEncoder getPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+		
+	}
+	
+	
+	
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("mahsamahsa606@yahoo.com")
-		.password("123456").roles("USER");
+		auth.inMemoryAuthentication()
+		.passwordEncoder(getPasswordEncoder())
+		.withUser("mahsamahsa606@yahoo.com")
+		.password(getPasswordEncoder().encode("123456"))
+		.roles("USER");
 	}
 
 	@Override
@@ -23,6 +39,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.hasRole("USER").and()
 				.formLogin()
 				.loginPage("/login")
+				.permitAll()
+				.and()
+				.logout()
+				.logoutUrl("/logout")
 				.permitAll();
 	}
 }
