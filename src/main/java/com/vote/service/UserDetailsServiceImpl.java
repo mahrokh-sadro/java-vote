@@ -7,20 +7,22 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.vote.domain.User;
 import com.vote.repositories.UserRepository;
+import com.vote.security.CustomSecurityUser;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	
 	@Autowired 
-	private UserRepository m_UserRepo;
+	private UserRepository m_userRepo;
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		User user= m_UserRepo.findByUsername(username);
+		User user= m_userRepo.findByUsername(username);
 		if(user==null) throw new UsernameNotFoundException("Username not found");
 		
 		
-		return null;
+		return new CustomSecurityUser(user);
 	}
 
 }
